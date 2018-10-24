@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-// import BookList from './components/BookList'
+import { Router } from "@reach/router";
+import BookList from './components/BookList'
 import Graph from './components/Graph'
 import Category from './components/Category'
+import Home from './components/Home'
 
 
 class App extends Component {
@@ -16,12 +18,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>HOME PAGE</h1>
-        <Category onChange={this.changeCategory}/>
-        <Graph 
-        category={this.state.category} 
-        booklist={this.state.books} />
-        {/* <BookList booklist={this.state.books} /> */}
+        <Router>
+          <Home path="/">
+            <BookList booklist={this.state.books} path="booklist"/>
+            <Graph 
+            category={this.state.category} 
+            booklist={this.state.books} 
+            path="graph">
+              <Category path="/" onChange={this.changeCategory}/>
+            </Graph>
+          </Home>
+        </Router>
       </div>
     );
   }

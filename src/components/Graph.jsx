@@ -1,7 +1,7 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
-const Graph = ({ category, booklist }) => {
+const Graph = ({ category, booklist, children }) => {
    
     const newList = booklist.reduce((acc, value) => {
         let newValue
@@ -26,6 +26,7 @@ const Graph = ({ category, booklist }) => {
     return (
         <div>
             {category && <h2>{category} Graph</h2>}
+            {children}
             {category && <Doughnut data={data} />}
         </div>
     )
